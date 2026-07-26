@@ -106,7 +106,7 @@ A separação treino/validação foi feita via `validation_split=0.1` no própri
 ### 2️⃣ Bibliotecas Utilizadas
 
 - **TensorFlow / Keras** (versão 2.21.0): framework principal do projeto. O módulo `tensorflow.keras` foi utilizado para a construção da arquitetura convolucional, carregamento do dataset MNIST e configuração do treinamento (otimizador Adam e callback de `EarlyStopping`). O módulo `tensorflow.lite` foi utilizado para a conversão, quantização e execução do modelo em formato de edge (TFLite).
-- **NumPy** (versão 2.5.1): utilizada na etapa de inferência para manipulação de arrays multidimensionais, redimensionamento das amostras (`np.expand_dims`) e extração da classe de maior probabilidade a partir da saída do modelo (`np.argmax`).
+- **NumPy** (versão 2.2.6): utilizada na etapa de inferência para manipulação de arrays multidimensionais, redimensionamento das amostras (`np.expand_dims`) e extração da classe de maior probabilidade a partir da saída do modelo (`np.argmax`).
 
 ### 3️⃣ Técnica de Otimização do Modelo
 
@@ -121,13 +121,13 @@ A técnica escolhida foi a **Quantização de Faixa Dinâmica (Dynamic Range Qua
 
 ### 4️⃣ Resultados Obtidos
 
-**Acurácia de validação:** o modelo atingiu **99.27%** de acurácia de validação final, com **99.16%** de acurácia no conjunto de teste — resultado consistente com o esperado para uma CNN de 4 blocos convolucionais aplicada ao MNIST.
+**Acurácia de validação:** o modelo atingiu **99.28%** de acurácia de validação final, com **98.97%** de acurácia no conjunto de teste — resultado consistente com o esperado para uma CNN de 4 blocos convolucionais aplicada ao MNIST.
 
 **Comparativo de tamanho dos arquivos:**
 
 | Arquivo | Tamanho |
 |---|---|
-| `model.h5` (Keras original) | 3700.6 KB (~3.6 MB) |
+| `model.h5` (Keras original) | 3699.5 KB (~3.6 MB) |
 | `model.tflite` (otimizado para Edge) | 318.8 KB |
 | **Redução obtida** | **91.4%** |
 
