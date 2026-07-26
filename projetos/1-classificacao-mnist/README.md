@@ -116,12 +116,12 @@ A técnica escolhida foi a **Quantização de Faixa Dinâmica (Dynamic Range Qua
 
 **Benefícios observados:**
 - **Redução drástica de tamanho:** a conversão de 32 para 8 bits reduziu o artefato final em mais de 90%, fundamental para armazenamento em dispositivos com memória restrita.
-- **Eficiência computacional:** operações com inteiros exigem menos ciclos de CPU que operações em ponto flutuante, resultando em inferência mais rápida — relevante para cenários de Edge AI.
+- **Eficiência computacional:** operações com inteiros exigem menos ciclos de CPU que operações em ponto flutuante, resultando em inferência mais rápida,relevante para cenários de Edge AI.
 - **Manutenção da acurácia:** o modelo quantizado manteve 100% de acerto nas amostras testadas na etapa de inferência, confirmando que a degradação de precisão foi imperceptível nesse caso.
 
 ### 4️⃣ Resultados Obtidos
 
-**Acurácia de validação:** o modelo atingiu **99.28%** de acurácia de validação final, com **98.97%** de acurácia no conjunto de teste — resultado consistente com o esperado para uma CNN de 4 blocos convolucionais aplicada ao MNIST.
+**Acurácia de validação:** o modelo atingiu **99.28%** de acurácia de validação final, com **98.97%** de acurácia no conjunto de teste, resultado consistente com o esperado para uma CNN de 4 blocos convolucionais aplicada ao MNIST.
 
 **Comparativo de tamanho dos arquivos:**
 
@@ -137,9 +137,9 @@ A quantização dos pesos de `float32` para `int8` cumpriu seu papel de compress
 
 **Decisões técnicas importantes:** optou-se por uma arquitetura com 4 blocos convolucionais (no limite superior do intervalo sugerido de 3-4), já que o MNIST é um dataset relativamente simples e a rede convergiu rapidamente sem overfitting, mesmo com essa profundidade adicional. O uso de `BatchNormalization` após cada `Conv2D` contribuiu para uma convergência mais estável e rápida (early stopping ativado bem antes do limite de 15 épocas).
 
-**Dificuldades encontradas:** a principal restrição foi o treinamento exclusivo em CPU, o que tornou cada época mais lenta que em ambiente com GPU — ainda assim, o tempo total de treinamento permaneceu na casa de poucos minutos, dado o tamanho reduzido das imagens (28x28, 1 canal) e a convergência rápida via early stopping.
+**Dificuldades encontradas:** a principal restrição foi o treinamento exclusivo em CPU, o que tornou cada época mais lenta que em ambiente com GPU, ainda assim, o tempo total de treinamento permaneceu na casa de poucos minutos, dado o tamanho reduzido das imagens (28x28, 1 canal) e a convergência rápida via early stopping.
 
-**Aprendizados durante o desafio:** o principal aprendizado foi a compreensão prática do fluxo completo de Edge AI — construir e treinar a rede é apenas a primeira etapa; conversão e quantização exigem compromissos de engenharia entre tamanho, velocidade e precisão. A etapa de `TFLiteConverter` evidenciou de forma concreta como a quantização de pesos permite levar modelos robustos para dispositivos com recursos computacionais limitados, mantendo a integridade preditiva da rede.
+**Aprendizados durante o desafio:** o principal aprendizado foi a compreensão prática do fluxo completo de Edge AI, construir e treinar a rede é apenas a primeira etapa; conversão e quantização exigem compromissos de engenharia entre tamanho, velocidade e precisão. A etapa de `TFLiteConverter` evidenciou de forma concreta como a quantização de pesos permite levar modelos robustos para dispositivos com recursos computacionais limitados, mantendo a integridade preditiva da rede.
 
 ### 6️⃣ Exemplo de Inferência
 
